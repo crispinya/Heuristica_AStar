@@ -1,1 +1,0 @@
-# Heuristica_AStar
