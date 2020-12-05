@@ -1,7 +1,3 @@
 OBS: (0,1);(0,3);(1,3)
 SAT1: 1;1;1;1;1
-SAT2: 1;1;1;1;8
-
-//Datos del problema
-//Coordenadas observaciones
-//Coste/ganancia en energia de: obvs; transm; giro; recarga; unidades bateria disponibles
+SAT2: 1;-1;1;1;8

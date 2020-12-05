@@ -8,6 +8,7 @@ public class problema {
     //String[] OT; //TODO: Observations already transmited to the main base. Esto es mas de cada estado que de esto creo
 
     public problema(String problema_prob){
+        
         //TODO: First we get the information from the file given
 
         //SAT1 = new satelite(obvs, trans, giro, carga, bateria)
