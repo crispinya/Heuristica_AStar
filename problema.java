@@ -17,8 +17,5 @@ public class problema {
         SAT1 = new satelite(problemParser.parseSAT(problema_prob, "SAT1"));
         SAT2= new satelite(problemParser.parseSAT(problema_prob, "SAT2"));
         
-        //SAT1 = new satelite(obvs, trans, giro, carga, bateria);
-        //SAT2 = new satelite(obvs, trans, giro, carga, bateria);
-        
     }
 }
