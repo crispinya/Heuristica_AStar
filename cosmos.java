@@ -1,16 +1,14 @@
 //Main of the program
 //once exported it should be executed as ./Cosmos.sh <problema.prob> <heuristica>
 //main recieves problema and heuristica FIXME: no se why no va
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class cosmos{
 
-   private static int costeSAT1[] = new int[5];
-   private static int costeSAT2[] = new int[5];
+   //private static int costeSAT1[] = new int[5];
+   //private static int costeSAT2[] = new int[5];
 
-    public static void parseFiles(String path) throws IOException {
+    /*public static void parseFiles(String path) throws IOException {
         String infoSAT1[] = new String[5]; //Obtendremos los costes de cada satelite por el fichero leido
         String infoSAT2[] = new String[5];
         String linea = "";
@@ -33,9 +31,9 @@ public class cosmos{
         }
         buffer.close();
         fichero.close();
-    }
+    }^*/
 
-    private static String[] extractInformation(String line, int substring){ //Extraemos la informacion de cada linea en forma de string. Cada posicion del array será cada uno de los costes
+ /*   private static String[] extractInformation(String line, int substring){ //Extraemos la informacion de cada linea en forma de string. Cada posicion del array será cada uno de los costes
         String inicioLectura = line.substring(substring);
         return inicioLectura.split(";");
     }
@@ -55,28 +53,30 @@ public class cosmos{
         }
         return result;
     }
-
+*/
 
     public static void main(String[] args) throws IOException { // No se puede poner dentro del corchete la longitud de
                                                                 // args, para eso usamos control de errores
 
         //TODO: Control de errores de numero de argumentos.
         if(args.length != 2){
-            throw new RuntimeException("Error: El numero de parametros debe ser igual a 2");
+            throw new RuntimeException("Error: El numero de parametros debe ser igual a 2. Ejecute el programa como ./Cosmos.sh <problema.prob> <heuristica>");
         }
         //First, we read problema.prob and get the data info
-        parseFiles(args[0]);
+        //parseFiles(args[0]);
 
 
-        for(int i = 0; i<costeSAT1.length;i++){
+        /*for(int i = 0; i<costeSAT1.length;i++){
             System.out.print(costeSAT1[i]);
         }
         System.out.println("\n");
         for(int i = 0; i<costeSAT2.length;i++){
             System.out.print(costeSAT2[i]);
-        }
+        }*/
 
-        //problema = new problema(args[1]); 
+        problema problema = new problema(args[0]); 
+        //esto para probar:
+        System.out.print(problema.SAT1.bateria_disponible);
     
         //then we setup the heuristic
     
