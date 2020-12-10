@@ -12,7 +12,7 @@ public class Problema {
         
         parser problemParser = new parser();
         
-        //astros = problemParser.parseAstros(problema_prob);
+        astros = problemParser.parseAstros(problema_prob);
 
         SAT1 = new satelite(problemParser.parseSAT(problema_prob, "SAT1"));
         SAT2= new satelite(problemParser.parseSAT(problema_prob, "SAT2"));

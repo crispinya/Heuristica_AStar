@@ -28,34 +28,46 @@ public class parser {
         return dataSAT;
     }
 
-    /*public Astro[] parseAstros(String path) throws IOException {
+    public Astro[] parseAstros(String path) throws IOException {
         String linea = "";
         FileReader fichero = new FileReader(path); //Abrimos el fichero, si no lo encuentra saltara un error
         BufferedReader buffer = new BufferedReader(fichero);
+        //Astro astros[] = null; //astros a observar
+        Astro astros[];
 
         while((linea = buffer.readLine()) != null){  //Abrimos fichero, y un buffer para leer linea a linea lo que tenemos
             String tipoInformacion = linea.substring(0,4);
             if(tipoInformacion.equals("OBS:")){
                 String infoAstros[] = extractInformation(linea, 5); //El 5 es la posicion donde empiezan a aparecer los datos en OBS
-                //int infoAstrosInt[] = convertToInt(infoAstros);
-                //Astro astros[] = new Astro[infoA]
+                //tenemos en cada posicion del array la info de tipo (hora,banda) 
+                astros = new Astro[infoAstros.length];
+                System.out.println("se mete en OBS");
 
+                //creamos los astros a observar
                 for(int i = 0; i < astros.length; i++){
-                    astros[0] = new Astro(infoAstrosInt[0], infoAstrosInt[1]);
-                }
+                    int banda, hora;
+                    banda = Integer.parseInt(infoAstros[i].substring(1, 2));
+                    hora = Integer.parseInt(infoAstros[i].substring(3, 4));
+                    astros[i] = new Astro(banda, hora);
+                } 
+
+                buffer.close();
+                fichero.close();
+
+                return astros;
             }
         }
+
+        /*if(astros.equals(null)){ //Si no es ninguna de estas opciones, significa que el fichero contiene informacion erronea y por tanto no nos sirve
+            buffer.close();
+            throw new RuntimeException("Error: debe existir alguna observacion"); 
+        }*/
 
         buffer.close();
         fichero.close();
 
-        if(astros.equals(null)){ //Si no es ninguna de estas opciones, significa que el fichero contiene informacion erronea y por tanto no nos sirve
-            buffer.close();
-            throw new RuntimeException("Error: debe existir alguna observacion"); 
-        }
-
-        return astros;
-    }*/
+        return null;
+    }
 
     private static String[] extractInformation(String line, int substring){ //Extraemos la informacion de cada linea en forma de string. Cada posicion del array será cada uno de los costes
         String inicioLectura = line.substring(substring);
