@@ -4,7 +4,7 @@
 //javac *.java crea las clases
 import java.io.IOException;
 
-public class cosmos{
+public class Cosmos{
     public static void main(String[] args) throws IOException { // No se puede poner dentro del corchete la longitud de
                                                                 // args, para eso usamos control de errores
 
@@ -17,7 +17,7 @@ public class cosmos{
         Problema problema = new Problema(args[0]); 
 
         //we create the initial state
-        state S = new state(problema);
+        State S = new State(problema);
 
         //then we setup the heuristic
     

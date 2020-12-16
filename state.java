@@ -1,4 +1,4 @@
-public class state {
+public class State {
     
     Problema problema;
     
@@ -13,21 +13,51 @@ public class state {
     int BandaSAT2; //Observation Band of the SAT2
     Astro OSAT2[]; //Observations done and not yet transmited by SAT2
     
-    int g, f, h; //valores calculados, TODO: definirlos mejor
+    //valores a calcular sobre el estado
+    int g; // Coste desde el estado S inicial 
+    int h; // Coste heurístico desde este estado hasta algún estado final t
+    int f; //suma de f y h 
+    
     //TODO: anadir puntero a padre
 
     //to create the initial state
-    public state(Problema problema){
+    public State(Problema problema){
         this.problema = problema;
 
-        Hour = 0;
-        CargaSAT1 = problema.SAT1.bateria_maxima;
-        BandaSAT1 = 01;
-        OSAT1 = null;
+        this.Hour = 0;
+        this.CargaSAT1 = problema.SAT1.bateria_maxima;
+        this.BandaSAT1 = 01;
+        this.OSAT1 = null;
 
-        CargaSAT2 = problema.SAT2.bateria_maxima;
-        BandaSAT2 = 23;
-        OSAT2 = null;
+        this.CargaSAT2 = problema.SAT2.bateria_maxima;
+        this.BandaSAT2 = 23;
+        this.OSAT2 = null;
+
+        this.g = 0;
+        this.h = calcularCosteHeuristico();
+        this.f = calcularCosteF(this.g, this.h);
+    }
+
+
+
+    //funciones calculo de costes:
+
+    int calcularCosteG(){
+        int gCalculado = 0;
+            //TODO: implementar
+            // igual a g del padre + coste arco padre-estado (depende del tipo de funcion)
+        return gCalculado;
+    }
+    
+    
+    int calcularCosteHeuristico(){
+        int hCalculado = 0;
+            //TODO: implementar
+        return hCalculado;
+    }
+
+    int calcularCosteF(int g, int h){
+        return g + h;
     }
 
 }

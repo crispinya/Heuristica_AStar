@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class parser {
+public class Parser {
     
     public int[] parseSAT(String path, String SATname) throws IOException {
         String infoSAT[] = new String[5]; //Obtendremos los costes de cada satelite por el fichero leido
