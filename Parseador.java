@@ -1,8 +1,11 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
 
-public class Parser {
+public class Parseador {
     
     public int[] parseSAT(String path, String SATname) throws IOException {
         String infoSAT[] = new String[5]; //Obtendremos los costes de cada satelite por el fichero leido
@@ -28,27 +31,25 @@ public class Parser {
         return dataSAT;
     }
 
-    public Astro[] parseAstros(String path) throws IOException {
+    public ArrayList<AstroObservacion> parseAstros(String path) throws IOException {
         String linea = "";
         FileReader fichero = new FileReader(path); //Abrimos el fichero, si no lo encuentra saltara un error
         BufferedReader buffer = new BufferedReader(fichero);
         //Astro astros[] = null; //astros a observar
-        Astro astros[];
+        ArrayList <AstroObservacion> astros = new ArrayList<>();
 
         while((linea = buffer.readLine()) != null){  //Abrimos fichero, y un buffer para leer linea a linea lo que tenemos
             String tipoInformacion = linea.substring(0,4);
             if(tipoInformacion.equals("OBS:")){
                 String infoAstros[] = extractInformation(linea, 5); //El 5 es la posicion donde empiezan a aparecer los datos en OBS
                 //tenemos en cada posicion del array la info de tipo (hora,banda) 
-                astros = new Astro[infoAstros.length];
-                System.out.println("se mete en OBS");
-
                 //creamos los astros a observar
-                for(int i = 0; i < astros.length; i++){
+                for(int i = 0; i < infoAstros.length; i++){
                     int banda, hora;
                     banda = Integer.parseInt(infoAstros[i].substring(1, 2));
                     hora = Integer.parseInt(infoAstros[i].substring(3, 4));
-                    astros[i] = new Astro(banda, hora);
+                    AstroObservacion nuevoAstro = new AstroObservacion(banda, hora);
+                    astros.add(nuevoAstro);
                 } 
 
                 buffer.close();
