@@ -1,0 +1,153 @@
+-------- COMIENZA PROBLEMA --------
+EXPANDIDO: H: 0; SAT1: 1, b: (0,1) -; SAT2: 8, b: (2,3) - ; 0
+ *  * SUCESOR: H: 1; SAT1: 1, b: (0,1) -; SAT2: 8, b: (2,3) - ; 1 IDLE IDLE
+ *  * SUCESOR: H: 1; SAT1: 1, b: (0,1) -; SAT2: 7, b: (1,2) - ; 1 IDLE Gira
+ *  * SUCESOR: H: 1; SAT1: 0, b: (1,2) -; SAT2: 8, b: (2,3) - ; 1 Gira IDLE
+ *  * SUCESOR: H: 1; SAT1: 0, b: (1,2) -; SAT2: 7, b: (1,2) - ; 1 Gira Gira
+EXPANDIDO: H: 1; SAT1: 1, b: (0,1) -; SAT2: 7, b: (1,2) - ; 1
+ *  * SUCESOR: H: 2; SAT1: 1, b: (0,1) -; SAT2: 7, b: (1,2) - ; 2 IDLE IDLE
+ *  * SUCESOR: H: 2; SAT1: 1, b: (0,1) -; SAT2: 6, b: (2,3) - ; 2 IDLE Gira
+ *  * SUCESOR: H: 2; SAT1: 1, b: (0,1) -; SAT2: 8, b: (1,2) - ; 2 IDLE Carga
+ *  * SUCESOR: H: 2; SAT1: 0, b: (0,1) - (0,1); SAT2: 7, b: (1,2) - ; 2 Observa IDLE
+ *  * SUCESOR: H: 2; SAT1: 0, b: (0,1) - (0,1); SAT2: 6, b: (2,3) - ; 2 Observa Gira
+ *  * SUCESOR: H: 2; SAT1: 0, b: (0,1) - (0,1); SAT2: 8, b: (1,2) - ; 2 Observa Carga
+ *  * SUCESOR: H: 2; SAT1: 0, b: (1,2) -; SAT2: 7, b: (1,2) - ; 2 Gira IDLE
+ *  * SUCESOR: H: 2; SAT1: 0, b: (1,2) -; SAT2: 6, b: (2,3) - ; 2 Gira Gira
+ *  * SUCESOR: H: 2; SAT1: 0, b: (1,2) -; SAT2: 8, b: (1,2) - ; 2 Gira Carga
+EXPANDIDO: H: 1; SAT1: 0, b: (1,2) -; SAT2: 8, b: (2,3) - ; 1
+ *  * SUCESOR: H: 2; SAT1: 0, b: (1,2) -; SAT2: 8, b: (2,3) - ; 2 IDLE IDLE
+ *  * SUCESOR: H: 2; SAT1: 0, b: (1,2) -; SAT2: 7, b: (1,2) - ; 2 IDLE Gira
+ *  * SUCESOR: H: 2; SAT1: 1, b: (1,2) -; SAT2: 8, b: (2,3) - ; 2 Carga IDLE
+ *  * SUCESOR: H: 2; SAT1: 1, b: (1,2) -; SAT2: 7, b: (1,2) - ; 2 Carga Gira
+EXPANDIDO: H: 1; SAT1: 0, b: (1,2) -; SAT2: 7, b: (1,2) - ; 1
+ *  * SUCESOR: H: 2; SAT1: 0, b: (1,2) -; SAT2: 7, b: (1,2) - ; 2 IDLE IDLE
+ *  * SUCESOR: H: 2; SAT1: 0, b: (1,2) -; SAT2: 6, b: (2,3) - ; 2 IDLE Gira
+ *  * SUCESOR: H: 2; SAT1: 0, b: (1,2) -; SAT2: 8, b: (1,2) - ; 2 IDLE Carga
+ *  * SUCESOR: H: 2; SAT1: 1, b: (1,2) -; SAT2: 7, b: (1,2) - ; 2 Carga IDLE
+ *  * SUCESOR: H: 2; SAT1: 1, b: (1,2) -; SAT2: 6, b: (2,3) - ; 2 Carga Gira
+ *  * SUCESOR: H: 2; SAT1: 1, b: (1,2) -; SAT2: 8, b: (1,2) - ; 2 Carga Carga
+EXPANDIDO: H: 2; SAT1: 1, b: (0,1) -; SAT2: 6, b: (2,3) - ; 2
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) -; SAT2: 6, b: (2,3) - ; 3 IDLE IDLE
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) -; SAT2: 5, b: (1,2) - ; 3 IDLE Gira
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) -; SAT2: 7, b: (2,3) - ; 3 IDLE Carga
+ *  * SUCESOR: H: 3; SAT1: 0, b: (1,2) -; SAT2: 6, b: (2,3) - ; 3 Gira IDLE
+ *  * SUCESOR: H: 3; SAT1: 0, b: (1,2) -; SAT2: 5, b: (1,2) - ; 3 Gira Gira
+ *  * SUCESOR: H: 3; SAT1: 0, b: (1,2) -; SAT2: 7, b: (2,3) - ; 3 Gira Carga
+EXPANDIDO: H: 2; SAT1: 1, b: (0,1) -; SAT2: 8, b: (1,2) - ; 2
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) -; SAT2: 8, b: (1,2) - ; 3 IDLE IDLE
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) -; SAT2: 7, b: (2,3) - ; 3 IDLE Gira
+ *  * SUCESOR: H: 3; SAT1: 0, b: (1,2) -; SAT2: 8, b: (1,2) - ; 3 Gira IDLE
+ *  * SUCESOR: H: 3; SAT1: 0, b: (1,2) -; SAT2: 7, b: (2,3) - ; 3 Gira Gira
+EXPANDIDO: H: 2; SAT1: 0, b: (0,1) - (0,1); SAT2: 7, b: (1,2) - ; 2
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) - (0,1); SAT2: 7, b: (1,2) - ; 3 IDLE IDLE
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) - (0,1); SAT2: 6, b: (2,3) - ; 3 IDLE Gira
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) - (0,1); SAT2: 8, b: (1,2) - ; 3 IDLE Carga
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) - (0,1); SAT2: 7, b: (1,2) - ; 3 Carga IDLE
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) - (0,1); SAT2: 6, b: (2,3) - ; 3 Carga Gira
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) - (0,1); SAT2: 8, b: (1,2) - ; 3 Carga Carga
+EXPANDIDO: H: 2; SAT1: 0, b: (0,1) - (0,1); SAT2: 6, b: (2,3) - ; 2
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) - (0,1); SAT2: 6, b: (2,3) - ; 3 IDLE IDLE
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) - (0,1); SAT2: 5, b: (1,2) - ; 3 IDLE Gira
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) - (0,1); SAT2: 7, b: (2,3) - ; 3 IDLE Carga
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) - (0,1); SAT2: 6, b: (2,3) - ; 3 Carga IDLE
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) - (0,1); SAT2: 5, b: (1,2) - ; 3 Carga Gira
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) - (0,1); SAT2: 7, b: (2,3) - ; 3 Carga Carga
+EXPANDIDO: H: 2; SAT1: 0, b: (0,1) - (0,1); SAT2: 8, b: (1,2) - ; 2
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) - (0,1); SAT2: 8, b: (1,2) - ; 3 IDLE IDLE
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) - (0,1); SAT2: 7, b: (2,3) - ; 3 IDLE Gira
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) - (0,1); SAT2: 8, b: (1,2) - ; 3 Carga IDLE
+ *  * SUCESOR: H: 3; SAT1: 1, b: (0,1) - (0,1); SAT2: 7, b: (2,3) - ; 3 Carga Gira
+EXPANDIDO: H: 2; SAT1: 0, b: (1,2) -; SAT2: 6, b: (2,3) - ; 2
+ *  * SUCESOR: H: 3; SAT1: 0, b: (1,2) -; SAT2: 6, b: (2,3) - ; 3 IDLE IDLE
+ *  * SUCESOR: H: 3; SAT1: 0, b: (1,2) -; SAT2: 5, b: (1,2) - ; 3 IDLE Gira
+ *  * SUCESOR: H: 3; SAT1: 0, b: (1,2) -; SAT2: 7, b: (2,3) - ; 3 IDLE Carga
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 6, b: (2,3) - ; 3 Carga IDLE
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 5, b: (1,2) - ; 3 Carga Gira
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 7, b: (2,3) - ; 3 Carga Carga
+EXPANDIDO: H: 2; SAT1: 0, b: (1,2) -; SAT2: 8, b: (1,2) - ; 2
+ *  * SUCESOR: H: 3; SAT1: 0, b: (1,2) -; SAT2: 8, b: (1,2) - ; 3 IDLE IDLE
+ *  * SUCESOR: H: 3; SAT1: 0, b: (1,2) -; SAT2: 7, b: (2,3) - ; 3 IDLE Gira
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 8, b: (1,2) - ; 3 Carga IDLE
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 7, b: (2,3) - ; 3 Carga Gira
+EXPANDIDO: H: 2; SAT1: 1, b: (1,2) -; SAT2: 8, b: (2,3) - ; 2
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 8, b: (2,3) - ; 3 IDLE IDLE
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 7, b: (1,2) - ; 3 IDLE Gira
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) -; SAT2: 8, b: (2,3) - ; 3 Gira IDLE
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) -; SAT2: 7, b: (1,2) - ; 3 Gira Gira
+EXPANDIDO: H: 2; SAT1: 1, b: (1,2) -; SAT2: 7, b: (1,2) - ; 2
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 7, b: (1,2) - ; 3 IDLE IDLE
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 6, b: (2,3) - ; 3 IDLE Gira
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 8, b: (1,2) - ; 3 IDLE Carga
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) -; SAT2: 7, b: (1,2) - ; 3 Gira IDLE
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) -; SAT2: 6, b: (2,3) - ; 3 Gira Gira
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) -; SAT2: 8, b: (1,2) - ; 3 Gira Carga
+EXPANDIDO: H: 2; SAT1: 1, b: (1,2) -; SAT2: 6, b: (2,3) - ; 2
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 6, b: (2,3) - ; 3 IDLE IDLE
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 5, b: (1,2) - ; 3 IDLE Gira
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 7, b: (2,3) - ; 3 IDLE Carga
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) -; SAT2: 6, b: (2,3) - ; 3 Gira IDLE
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) -; SAT2: 5, b: (1,2) - ; 3 Gira Gira
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) -; SAT2: 7, b: (2,3) - ; 3 Gira Carga
+EXPANDIDO: H: 2; SAT1: 1, b: (1,2) -; SAT2: 8, b: (1,2) - ; 2
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 8, b: (1,2) - ; 3 IDLE IDLE
+ *  * SUCESOR: H: 3; SAT1: 1, b: (1,2) -; SAT2: 7, b: (2,3) - ; 3 IDLE Gira
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) -; SAT2: 8, b: (1,2) - ; 3 Gira IDLE
+ *  * SUCESOR: H: 3; SAT1: 0, b: (0,1) -; SAT2: 7, b: (2,3) - ; 3 Gira Gira
+EXPANDIDO: H: 3; SAT1: 1, b: (0,1) -; SAT2: 5, b: (1,2) - ; 3
+ *  * SUCESOR: H: 4; SAT1: 1, b: (0,1) -; SAT2: 5, b: (1,2) - ; 4 IDLE IDLE
+ *  * SUCESOR: H: 4; SAT1: 1, b: (0,1) -; SAT2: 4, b: (1,2) -  (1,3); 4 IDLE Observa
+ *  * SUCESOR: H: 4; SAT1: 1, b: (0,1) -; SAT2: 4, b: (2,3) - ; 4 IDLE Gira
+ *  * SUCESOR: H: 4; SAT1: 1, b: (0,1) -; SAT2: 6, b: (1,2) - ; 4 IDLE Carga
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,3); SAT2: 5, b: (1,2) - ; 4 Observa IDLE
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (1,3); SAT2: 5, b: (1,2) - ; 4 Observa IDLE
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,3); SAT2: 4, b: (2,3) - ; 4 Observa Gira
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (1,3); SAT2: 4, b: (2,3) - ; 4 Observa Gira
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,3); SAT2: 6, b: (1,2) - ; 4 Observa Carga
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (1,3); SAT2: 6, b: (1,2) - ; 4 Observa Carga
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 5, b: (1,2) - ; 4 Gira IDLE
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 4, b: (1,2) -  (1,3); 4 Gira Observa
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 4, b: (2,3) - ; 4 Gira Gira
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 6, b: (1,2) - ; 4 Gira Carga
+EXPANDIDO: H: 3; SAT1: 1, b: (0,1) -; SAT2: 7, b: (2,3) - ; 3
+ *  * SUCESOR: H: 4; SAT1: 1, b: (0,1) -; SAT2: 7, b: (2,3) - ; 4 IDLE IDLE
+ *  * SUCESOR: H: 4; SAT1: 1, b: (0,1) -; SAT2: 6, b: (1,2) - ; 4 IDLE Gira
+ *  * SUCESOR: H: 4; SAT1: 1, b: (0,1) -; SAT2: 8, b: (2,3) - ; 4 IDLE Carga
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,3); SAT2: 7, b: (2,3) - ; 4 Observa IDLE
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (1,3); SAT2: 7, b: (2,3) - ; 4 Observa IDLE
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,3); SAT2: 6, b: (1,2) - ; 4 Observa Gira
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (1,3); SAT2: 6, b: (1,2) - ; 4 Observa Gira
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,3); SAT2: 8, b: (2,3) - ; 4 Observa Carga
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (1,3); SAT2: 8, b: (2,3) - ; 4 Observa Carga
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 7, b: (2,3) - ; 4 Gira IDLE
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 6, b: (1,2) - ; 4 Gira Gira
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 8, b: (2,3) - ; 4 Gira Carga
+EXPANDIDO: H: 3; SAT1: 0, b: (1,2) -; SAT2: 5, b: (1,2) - ; 3
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 5, b: (1,2) - ; 4 IDLE IDLE
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 4, b: (1,2) -  (1,3); 4 IDLE Observa
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 4, b: (2,3) - ; 4 IDLE Gira
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 6, b: (1,2) - ; 4 IDLE Carga
+ *  * SUCESOR: H: 4; SAT1: 1, b: (1,2) -; SAT2: 5, b: (1,2) - ; 4 Carga IDLE
+ *  * SUCESOR: H: 4; SAT1: 1, b: (1,2) -; SAT2: 4, b: (1,2) -  (1,3); 4 Carga Observa
+ *  * SUCESOR: H: 4; SAT1: 1, b: (1,2) -; SAT2: 4, b: (2,3) - ; 4 Carga Gira
+ *  * SUCESOR: H: 4; SAT1: 1, b: (1,2) -; SAT2: 6, b: (1,2) - ; 4 Carga Carga
+EXPANDIDO: H: 3; SAT1: 0, b: (1,2) -; SAT2: 7, b: (2,3) - ; 3
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 7, b: (2,3) - ; 4 IDLE IDLE
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 6, b: (1,2) - ; 4 IDLE Gira
+ *  * SUCESOR: H: 4; SAT1: 0, b: (1,2) -; SAT2: 8, b: (2,3) - ; 4 IDLE Carga
+ *  * SUCESOR: H: 4; SAT1: 1, b: (1,2) -; SAT2: 7, b: (2,3) - ; 4 Carga IDLE
+ *  * SUCESOR: H: 4; SAT1: 1, b: (1,2) -; SAT2: 6, b: (1,2) - ; 4 Carga Gira
+ *  * SUCESOR: H: 4; SAT1: 1, b: (1,2) -; SAT2: 8, b: (2,3) - ; 4 Carga Carga
+EXPANDIDO: H: 3; SAT1: 1, b: (0,1) - (0,1); SAT2: 7, b: (1,2) - ; 3
+ *  * SUCESOR: H: 4; SAT1: 1, b: (0,1) - (0,1); SAT2: 7, b: (1,2) - ; 4 IDLE IDLE
+ *  * SUCESOR: H: 4; SAT1: 1, b: (0,1) - (0,1); SAT2: 6, b: (1,2) -  (1,3); 4 IDLE Observa
+ *  * SUCESOR: H: 4; SAT1: 1, b: (0,1) - (0,1); SAT2: 6, b: (2,3) - ; 4 IDLE Gira
+ *  * SUCESOR: H: 4; SAT1: 1, b: (0,1) - (0,1); SAT2: 8, b: (1,2) - ; 4 IDLE Carga
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,1) (0,3); SAT2: 7, b: (1,2) - ; 4 Observa IDLE
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,1) (1,3); SAT2: 7, b: (1,2) - ; 4 Observa IDLE
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,1) (0,3); SAT2: 6, b: (2,3) - ; 4 Observa Gira
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,1) (1,3); SAT2: 6, b: (2,3) - ; 4 Observa Gira
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,1) (0,3); SAT2: 8, b: (1,2) - ; 4 Observa Carga
+ *  * SUCESOR: H: 4; SAT1: 0, b: (0,1) - (0,1) (1,3); SAT2: 8, b: (1,2) - ; 4 Observa Carga
+ * -- EFECTOS TRANSMIT ---
+-- FIN SAT1 EFECTOS TRANSMIT ---
+ * 

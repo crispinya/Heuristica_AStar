@@ -7,7 +7,7 @@ public class Estado implements Comparable<Estado> {
     
     Problem problema;
 
-    ArrayList<AstroObservacion> OT = new ArrayList<AstroObservacion>();
+    ArrayList<AstroObservacion> OT = new ArrayList<AstroObservacion>(); //observaciones ya transmitidas a base
     int Hour; //current time
 
     int CargaSAT1; //Charge (Carga) of the batery of CSAT1
@@ -23,22 +23,18 @@ public class Estado implements Comparable<Estado> {
     int h; // Coste heurístico desde este estado hasta algún estado final t
     int f; //suma de g y h 
     
-    //Referencia al estado padre
-    Estado padre;
+    Estado padre; //Referencia al estado padre
 
-      //to create the initial state
+    //to create the initial state
     public Estado(Problem problema){
         this.problema = problema;
-        this.OT = null; //por ser estado inicial
 
         this.Hour = 0; //por ser estado inicial
         this.CargaSAT1 = problema.SAT1.bateria_maxima;
         this.BandaSAT1 = this.problema.SAT1.bandas_admitidas[0]; //(0,1)
-        this.OSAT1 = null; //por ser estado inicial
 
         this.CargaSAT2 = problema.SAT2.bateria_maxima;
         this.BandaSAT2 = this.problema.SAT2.bandas_admitidas[0]; //(2,3)
-        this.OSAT2 = null; //por ser estado inicial
 
         this.g = 0; //por ser estado inicial
         this.h = calcularCosteHeuristico();
@@ -47,20 +43,30 @@ public class Estado implements Comparable<Estado> {
         this.padre = null; //por ser estado inicial
     }
 
+    //constructor estados sucesores
     public Estado(Estado EstadoPadre){
         
         //copiamos los valores del padre, luego los modificaremos segun las operaciones aplicadas
         this.problema = EstadoPadre.problema;
-        Collections.copy(this.OT, EstadoPadre.OT); //FIXME: Checkear que esté bien
+        //array OT
+        for(int i = 0; i < EstadoPadre.OT.size(); i++){
+            this.OT.add(EstadoPadre.OT.get(i));
+        }
+        
 
         this.CargaSAT1 = EstadoPadre.CargaSAT1;
         this.BandaSAT1 = EstadoPadre.BandaSAT1;
-        Collections.copy(this.OSAT1, EstadoPadre.OSAT1);
+        //array OSAT1
+        for(int i = 0; i < EstadoPadre.OSAT1.size(); i++){
+            this.OSAT1.add(EstadoPadre.OSAT1.get(i));
+        }
 
         this.CargaSAT2 = EstadoPadre.CargaSAT2;
         this.BandaSAT2 = EstadoPadre.BandaSAT2;
-        Collections.copy(this.OSAT2, EstadoPadre.OSAT2);
-
+        //array OSAT2
+        for(int i = 0; i < EstadoPadre.OSAT2.size(); i++){
+            this.OSAT2.add(EstadoPadre.OSAT2.get(i));
+        }
 
         // Actualizamos los valores
         this.padre = EstadoPadre;
@@ -73,16 +79,14 @@ public class Estado implements Comparable<Estado> {
     }
 
     //funciones calculo de costes:
-    //FIXME: Si queremos maximizar lo otro, cambiar esto
-    int calcularCosteG(){
+    
+    int calcularCosteG(){ //FIXME: Si queremos maximizar lo otro, cambiar esto
         //estamos minimizando el coste en horas. Pasa una hora cada vez (+1)
         return padre.g + 1;
     }
     
-    
     int calcularCosteHeuristico(){
-        int hCalculado = 0;
-            //TODO: implementar
+        int hCalculado = 0; //TODO: implementar
         return hCalculado;
     }
 
@@ -90,7 +94,6 @@ public class Estado implements Comparable<Estado> {
         return g + h;
     }
     
-
 
     //funcion crear sucesores
     public ArrayList<Estado> crearSucesores(){
@@ -100,34 +103,60 @@ public class Estado implements Comparable<Estado> {
 
         //intentamos ejecutar todas las combinaciones posibles, incluyendo las observaciones
         for(int i = 0; i < this.problema.ACCIONES.length; i++){ //para SAT1
-            for (int j = 0; j < this.problema.ACCIONES.length; i++){ //para SAT2
+            for (int j = 0; j < this.problema.ACCIONES.length; j++){ //para SAT2
                 
                 //Hay que pasar los posibles astros que se observen, los que se encuentran en problema.astrosAObservar FIXME: Pues abrá forma mas eficiente but
                 if(this.problema.ACCIONES[i].equals("Observa") && this.problema.ACCIONES[j].equals("Observa")){
                     for(int k = 0; k < this.problema.astrosAObservar.size(); k++){
                         for(int l = 0; l < this.problema.astrosAObservar.size() && l!=k; l++){
                             estadoHijo = realizarAcciones(this.problema.ACCIONES[i], this.problema.astrosAObservar.get(k), this.problema.ACCIONES[j], this.problema.astrosAObservar.get(l));
+                            
+                            if(estadoHijo != null){
+                                //lo metemos en la arrayList de sucesores
+                                //creamos los hijos de estados validos
+                                System.out.println("SUCESOR: " + estadoHijo.imprimirEstado() + " " + this.problema.ACCIONES[i] + " " + this.problema.ACCIONES[j]);
+            
+                                sucesores.add(estadoHijo); //FIXME: igual que estos sucesores ya se añadan en orden
+                            }
                         }
                     }                   
 
                 } else if(this.problema.ACCIONES[i].equals("Observa")){
                     for(int k = 0; k < this.problema.astrosAObservar.size(); k++){
                         estadoHijo = realizarAcciones(this.problema.ACCIONES[i], this.problema.astrosAObservar.get(k), this.problema.ACCIONES[j], null);
+                        //FIXME: el astrosAObservar.get lo ace bien
+                        if(estadoHijo != null){
+                            //lo metemos en la arrayList de sucesores
+                            //creamos los hijos de estados validos
+                            System.out.println("SUCESOR: " + estadoHijo.imprimirEstado() + " " + this.problema.ACCIONES[i] + " " + this.problema.ACCIONES[j]);
+        
+                            sucesores.add(estadoHijo); //FIXME: igual que estos sucesores ya se añadan en orden
+                        }
                     }
 
                 } else if(this.problema.ACCIONES[j].equals("Observa")){
                     for(int k = 0; k < this.problema.astrosAObservar.size(); k++){
                         estadoHijo = realizarAcciones(this.problema.ACCIONES[i], null, this.problema.ACCIONES[j], this.problema.astrosAObservar.get(k));
+
+                        if(estadoHijo != null){
+                            //lo metemos en la arrayList de sucesores
+                            //creamos los hijos de estados validos
+                            System.out.println("SUCESOR: " + estadoHijo.imprimirEstado() + " " + this.problema.ACCIONES[i] + " " + this.problema.ACCIONES[j]);
+        
+                            sucesores.add(estadoHijo); //FIXME: igual que estos sucesores ya se añadan en orden
+                        }
                     }
 
                 } else{
                     estadoHijo = realizarAcciones(this.problema.ACCIONES[i], null, this.problema.ACCIONES[j], null);
-                }
-                
-                if(!estadoHijo.equals(null)){
-                    //lo metemos en la arrayList de sucesores
-                    //creamos los hijos de estados validos
-                    sucesores.add(estadoHijo); //FIXME: igual que estos sucesores ya se añadan en orden
+
+                    if(estadoHijo != null){
+                        //lo metemos en la arrayList de sucesores
+                        //creamos los hijos de estados validos
+                        System.out.println("SUCESOR: " + estadoHijo.imprimirEstado() + " " + this.problema.ACCIONES[i] + " " + this.problema.ACCIONES[j]);
+    
+                        sucesores.add(estadoHijo); //FIXME: igual que estos sucesores ya se añadan en orden
+                    }
                 }
             }
         }
@@ -152,7 +181,7 @@ public class Estado implements Comparable<Estado> {
 
         //Aplicamos las postcondiciones efecto de las acciones
         implementEffects(estadoHijo, operacionSAT1, astro1, 1);
-        implementEffects(estadoHijo, operacionSAT1, astro2, 2);
+        implementEffects(estadoHijo, operacionSAT2, astro2, 2);
 
         return estadoHijo;
     }
@@ -172,25 +201,25 @@ public class Estado implements Comparable<Estado> {
 
         } else if(operacionSAT.equals(this.problema.ACCIONES[1])){
             //OBSERVA
-            //(condicion hora) && (bateria suficiente) && (astro en su banda de obvs) && (obvs no realizada ni enviada ya)
-            if(numSAT == 1 && (this.Hour >= 0 && this.Hour < 11) && (this.CargaSAT1 >= this.problema.SAT1.coste_observar)
+            //(condicion hora) && (bateria suficiente) && (hora astro correcta) &&(astro en su banda de obvs) && (obvs no realizada ni enviada ya)
+            if(numSAT == 1 && (this.Hour >= 0 && this.Hour < 11) && (this.CargaSAT1 >= this.problema.SAT1.coste_observar) && this.Hour == astro.hora
              && (astro.banda == this.BandaSAT1[0] || astro.banda == this.BandaSAT1[1]) && (!this.OSAT1.contains(astro) && !this.OSAT2.contains(astro) && !this.OT.contains(astro))){
                 return true;
             }
 
-            if(numSAT == 2 && (this.Hour >= 0 && this.Hour < 11) && (this.CargaSAT2 >= this.problema.SAT2.coste_observar)
+            if(numSAT == 2 && (this.Hour >= 0 && this.Hour < 11) && (this.CargaSAT2 >= this.problema.SAT2.coste_observar) && this.Hour == astro.hora
              && (astro.banda == this.BandaSAT2[0] || astro.banda == this.BandaSAT2[1]) && (!this.OSAT1.contains(astro) && !this.OSAT2.contains(astro) && !this.OT.contains(astro))){
                 return true;
             }
 
         } else if(operacionSAT.equals(this.problema.ACCIONES[2])){
-            //TRANSMITE
-            //(condicion hora) && (bateria suficiente) && (condicion de que la obvs haya sido realizada)
-            if(numSAT == 1 && (this.Hour >= 0 && this.Hour < 11) && (this.CargaSAT1 >= this.problema.SAT1.coste_transmitir) && (this.OSAT1.contains(astro))){
+            //TRANSMITE. Se transmite el primer astro que este observado
+            //(condicion hora) && (bateria suficiente) && (condicion de que haya observaciones)
+            if(numSAT == 1 && (this.Hour >= 0 && this.Hour < 11) && (this.CargaSAT1 >= this.problema.SAT1.coste_transmitir) && (this.OSAT1.size() > 0)){
                 return true;
             }
 
-            if(numSAT == 2 && (this.Hour >= 0 && this.Hour < 11) && (this.CargaSAT2 >= this.problema.SAT2.coste_transmitir) && (this.OSAT2.contains(astro))){
+            if(numSAT == 2 && (this.Hour >= 0 && this.Hour < 11) && (this.CargaSAT2 >= this.problema.SAT2.coste_transmitir) && (this.OSAT2.size() > 0)){
                 return true;
             }
 
@@ -221,6 +250,7 @@ public class Estado implements Comparable<Estado> {
     }
 
     private void implementEffects(Estado estadoHijo, String operacionSAT, AstroObservacion astro, int numSAT){
+        System.out.print(" * ");
         //efectos depende de las operaciones realizadas
 
         if(operacionSAT.equals(this.problema.ACCIONES[0])){
@@ -240,16 +270,19 @@ public class Estado implements Comparable<Estado> {
 
         } else if(operacionSAT.equals(this.problema.ACCIONES[2])){
             //TRANSMITE, por defecto la obvs mas reciente
+            System.out.println("-- EFECTOS TRANSMIT ---");
             if(numSAT == 1){
                 estadoHijo.CargaSAT1 = this.CargaSAT1 - this.problema.SAT1.coste_transmitir; //gasta energia
+                estadoHijo.OT.add(astro);
                 estadoHijo.OSAT1.remove(astro); //lo eliminamos de observados
+                System.out.println("-- FIN SAT1 EFECTOS TRANSMIT ---");
             }
             if(numSAT == 2){
                 estadoHijo.CargaSAT2 = this.CargaSAT2 - this.problema.SAT2.coste_transmitir; //gasta energia
+                estadoHijo.OT.add(astro);
                 estadoHijo.OSAT2.remove(astro); //lo eliminamos de observados
             }
-
-            estadoHijo.OT.add(astro); //efecto guarda una nueva observacion
+            //FIXME: System.out.println("-- FIN EFECTOS TRANSMIT " + astro.hora +  " " + astro.banda + "---");
 
         } else if(operacionSAT.equals(this.problema.ACCIONES[3])){
             //caso GIRA
@@ -259,9 +292,9 @@ public class Estado implements Comparable<Estado> {
 
                 //comprobamos que banda tiene ahora, y asignamos la contraria
                 if(Arrays.equals(this.BandaSAT1, this.problema.SAT1.bandas_admitidas[0])){
-                    this.BandaSAT1 = this.problema.SAT1.bandas_admitidas[1];
+                    estadoHijo.BandaSAT1 = this.problema.SAT1.bandas_admitidas[1];
                 } else{
-                    this.BandaSAT1 = this.problema.SAT1.bandas_admitidas[0];
+                    estadoHijo.BandaSAT1 = this.problema.SAT1.bandas_admitidas[0];
                 }
             }
 
@@ -270,9 +303,9 @@ public class Estado implements Comparable<Estado> {
 
                 //comprobamos que banda tiene ahora, y asignamos la contraria
                 if(Arrays.equals(this.BandaSAT2, this.problema.SAT2.bandas_admitidas[0])){
-                    this.BandaSAT2 = this.problema.SAT2.bandas_admitidas[1];
+                    estadoHijo.BandaSAT2 = this.problema.SAT2.bandas_admitidas[1];
                 } else{
-                    this.BandaSAT2 = this.problema.SAT2.bandas_admitidas[0];
+                    estadoHijo.BandaSAT2 = this.problema.SAT2.bandas_admitidas[0];
                 }
             }
 
@@ -302,18 +335,34 @@ public class Estado implements Comparable<Estado> {
         else if(this.f<e2.f) return -1;
         if(this.h>e2.h) return 1;
         if(this.h<e2.h) return -1; 
-        return 1; //En caso de empate total, cogemos el mas nuevo
+        return 0; //En caso de empate total, cogemos el mas nuevo
     }
 
-    public ArrayList<Estado> ordenarEstados (ArrayList<Estado> listaAbierta, Estado estadoAInsertar ){ //Ordena los sucesores obtenidos dentro de la lista final de abierta
-        boolean insertado = false;
-        for(int i=0; i<listaAbierta.size(); i++){
-            if(estadoAInsertar.f<listaAbierta.get(i).f){
-                listaAbierta.add(i,estadoAInsertar);
-                insertado=true;
-            }
+    public String imprimirEstado(){
+        String imprimir = "";
+
+        String impOT = "";
+        for(int i = 0; i <  this.OT.size(); i++){
+            impOT = impOT + " (" + this.OT.get(i).banda + "," + this.OT.get(i).hora + ")"; 
         }
-        if(!insertado) listaAbierta.add(estadoAInsertar);
-        return listaAbierta;
+
+        String impBanda1 = "b: (" + this.BandaSAT1[0] + "," + this.BandaSAT1[1] + ") -"; 
+        String impBanda2 = "b: (" + this.BandaSAT2[0] + "," + this.BandaSAT2[1] + ") - "; 
+
+        String impObvs1 = "";
+        for(int i = 0; i <  this.OSAT1.size(); i++){
+            impObvs1 = impObvs1 + " (" + this.OSAT1.get(i).banda + "," + this.OSAT1.get(i).hora + ")"; 
+        }    
+        
+        String impObvs2 = "";
+        for(int i = 0; i <  this.OSAT2.size(); i++){
+            impObvs2 = impObvs2 + " (" + this.OSAT2.get(i).banda + "," + this.OSAT2.get(i).hora + ")"; 
+        }
+        
+        String imprimirSAT1 = "SAT1: " + this.CargaSAT1 + ", " + impBanda1 + impObvs1;
+        String imprimirSAT2 = "SAT2: " + this.CargaSAT2 + ", " + impBanda2 + impObvs2;
+        imprimir = "H: " + this.Hour + "; " + imprimirSAT1 + "; " + imprimirSAT2 + "; " + this.f;
+        
+        return imprimir;
     }
 }
