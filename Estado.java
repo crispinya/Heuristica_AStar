@@ -66,7 +66,7 @@ public class Estado {
     }
 
     //funciones calculo de costes:
-    //TODO: Aquí o sacarlo fuera por el coste del nodo?
+    //TODO: Aquí o sacarlo fuera por el coste del arco?
     int calcularCosteG(int costeNodo){
         int gCalculado = 0;
         gCalculado = padre.g + costeNodo;
@@ -85,22 +85,25 @@ public class Estado {
     }
 
     //funcion crear sucesores
-    public ArrayList<Estado> crearSucesores (){
+    public ArrayList<Estado> crearSucesores(){
         ArrayList<Estado> sucesores = null;
         
-        Estado estadoHijo;
+        Estado estadoHijo = null;
 
         //intentamos ejecutar todas las combinaciones posibles
         for(int i = 0; i < this.problema.ACCIONES.length; i++){ //para SAT1
             for (int j = 0; j < this.problema.ACCIONES.length; i++){ //para SAT2
                 estadoHijo = realizarAcciones(this.problema.ACCIONES[i], this.problema.ACCIONES[j]);
-            }
-            if(!estadoHijo.equals(null)){
-                //lo metemos en la arrayList de sucesores
-                //creamos los hijos de estados validos
-                sucesores.add(estadoHijo);
+
+                if(!estadoHijo.equals(null)){
+                    //lo metemos en la arrayList de sucesores
+                    //creamos los hijos de estados validos
+                    sucesores.add(estadoHijo);
+                }
             }
         }
+
+        return sucesores;
     }
 
     private Estado realizarAcciones(String operaciónSAT1, String operaciónSAT2){

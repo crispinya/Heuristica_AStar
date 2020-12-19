@@ -1,4 +1,4 @@
-public class Satelite {
+public class SATelit {
     
     int coste_observar;
     int coste_transmitir;
@@ -6,7 +6,7 @@ public class Satelite {
     int beneficio_cargar;
     int bateria_maxima;
 
-    public Satelite (int[] dataSAT){
+    public SATelit(int[] dataSAT){
         this.coste_observar = dataSAT[0];
         this.coste_transmitir = dataSAT[1];
         this.coste_girar = dataSAT[2];

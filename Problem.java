@@ -6,8 +6,8 @@ public class Problem {
     // Definition of the problem given as a problema.prob file
 
     ArrayList<AstroObservacion> astros = new ArrayList<AstroObservacion>(); //posibles observaciones
-    Satelite SAT1;
-    Satelite SAT2;
+    SATelit SAT1;
+    SATelit SAT2;
 
     Estado S;
 
@@ -20,8 +20,8 @@ public class Problem {
         
         this.astros = problemParser.parseAstros(problema_prob);
 
-        this.SAT1 = new Satelite(problemParser.parseSAT(problema_prob, "SAT1"));
-        this.SAT2 = new Satelite(problemParser.parseSAT(problema_prob, "SAT2"));
+        this.SAT1 = new SATelit(problemParser.parseSAT(problema_prob, "SAT1"));
+        this.SAT2 = new SATelit(problemParser.parseSAT(problema_prob, "SAT2"));
         
     }
 
