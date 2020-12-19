@@ -1,14 +1,14 @@
 @echo off
 
-DEL state.class
-DEL cosmos.class
-DEL parser.class
-DEL problema.class
-DEL Astro.class
-DEL satelite.class
+DEL Estado.class
+DEL CosmosMain.class
+DEL Parseador.class
+DEL Problem.class
+DEL AstroObservacion.class
+DEL SATelit.class
 
-javac cosmos.java
+javac CosmosMain.java
 
-java cosmos problema.prob a
+java CosmosMain problema.prob a
 
 pause

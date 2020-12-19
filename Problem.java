@@ -5,7 +5,7 @@ public class Problem {
 
     // Definition of the problem given as a problema.prob file
 
-    ArrayList<AstroObservacion> astros = new ArrayList<AstroObservacion>(); //posibles observaciones
+    ArrayList<AstroObservacion> astrosAObservar = new ArrayList<AstroObservacion>(); //posibles observaciones
     SATelit SAT1;
     SATelit SAT2;
 
@@ -18,15 +18,17 @@ public class Problem {
         
         Parseador problemParser = new Parseador();
         
-        this.astros = problemParser.parseAstros(problema_prob);
+        this.astrosAObservar = problemParser.parseAstros(problema_prob);
 
         this.SAT1 = new SATelit(problemParser.parseSAT(problema_prob, "SAT1"));
         this.SAT2 = new SATelit(problemParser.parseSAT(problema_prob, "SAT2"));
+        this.SAT1.bandas_admitidas = new int[][] {{0,1}, {1, 2}};
+        this.SAT2.bandas_admitidas = new int[][]  {{2,3}, {1, 2}};
         
     }
 
     public boolean isFinal(Estado estadoActual){
         //devuelve true si ya se han transmitido todas las observaciones
-        return this.astros.equals(estadoActual.OT); 
+        return this.astrosAObservar.equals(estadoActual.OT); 
     }
 }
