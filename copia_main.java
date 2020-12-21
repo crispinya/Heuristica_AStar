@@ -4,7 +4,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CosmosMain{
+public class copia_main{
     public static void main(String[] args) throws IOException { 
 
         //Control de errores de numero de argumentos.
@@ -48,6 +48,10 @@ public class CosmosMain{
         while(!abierta.isEmpty() && !exito){
             nodoEscogido = abierta.get(0);
             abierta.remove(0);
+            
+            /*if(isEstadoFinal(nodoEscogido, problema)){//Si es estado final significa que hemos encontrado la solucion
+                exito = true;
+            }*/
 
             System.out.println("EXPANDIDO: " + nodoEscogido.imprimirEstado());
             numExpandidos ++; //expandimos otro nodo
@@ -93,7 +97,6 @@ public class CosmosMain{
 
         // No exite solución o no se puede encontrar
         // El calculo de sucesores esta implementado dentro de la clase Estado
-        
     }
 
     private static int getIndiceNodoEnLista(Estado sucesor, ArrayList<Estado> lista) {
@@ -129,9 +132,103 @@ public class CosmosMain{
         return lista;
     }
 
+
+
+    //TODO: Check datos iniciales por si tienen errores
+    /*public static boolean AStar(Problem problema) throws IOException {
+        //tomamos tiempos
+        long tiempoInicio,tiempoFinal,tiempoTranscurrido;
+        tiempoInicio=System.currentTimeMillis();
+
+        ArrayList<Estado> abierta = new ArrayList<Estado>(); //lista abierta
+        ArrayList<Estado> cerrada = new ArrayList<Estado>(); //lista cerrada
+
+        Estado estadoInicial = problema.S;
+        Estado nodoEscogido = null;
+        int numExpandidos = 0; //Cantidad de nodos expandidos
+        abierta.add(estadoInicial);
+        boolean exito = false;
+
+        while(!abierta.isEmpty() || !exito){
+            nodoEscogido = nodoAExpandir(abierta, cerrada); //buscamos primer nodo de abierta que no este en cerrada
+            System.out.println("EXPANDIDO: " + nodoEscogido.imprimirEstado());
+
+            if(isEstadoFinal(nodoEscogido, problema)){//Si es estado final significa que hemos encontrado la solucion
+                exito = true;
+            }
+            
+            else{
+                numExpandidos ++; //expandimos otro nodo
+                abierta.remove(nodoEscogido); //Sacamos el nodo de abierta y lo introducimos en cerrada
+                cerrada.add(nodoEscogido);
+                ArrayList<Estado> sucesores = nodoEscogido.crearSucesores(); //Crear los sucesores del nodo escogido
+                
+                //Insertamos los sucesores en su posicion correspondiente de la lista abierta
+                for(int i=0; i<sucesores.size(); i++){
+                    Estado sucesorAInsertar = sucesores.get(i); 
+                    abierta = ordenarEstados(abierta, sucesorAInsertar);
+                }
+            }   
+        }
+
+        if(exito){
+            tiempoFinal= System.currentTimeMillis();
+            tiempoTranscurrido= tiempoFinal - tiempoInicio;
+        
+            //Se ha encontrado solucion, se imprime el resultado
+            printSolution(nodoEscogido, numExpandidos, tiempoTranscurrido);
+            return true;
+        }
+
+        return false; // No exite solución o no se puede encontrar
+        // El calculo de sucesores esta implementado dentro de la clase Estado
+    }
+    */
+
     private static boolean isEstadoFinal(Estado estadoActual, Problem problema) {
         return problema.isFinal(estadoActual);
     }
+
+    //Ordena los sucesores obtenidos dentro de la lista final abierta
+    /*private static ArrayList<Estado> ordenarEstados(ArrayList<Estado> listaAbierta, Estado estadoAInsertar) {
+        boolean insertado = false;
+        for (int i = 0; i < listaAbierta.size(); i++) {
+            if (estadoAInsertar.f < listaAbierta.get(i).f) {
+                listaAbierta.add(i, estadoAInsertar);
+                insertado = true;
+            }
+        }
+        if (!insertado)
+            listaAbierta.add(estadoAInsertar);
+        return listaAbierta;
+    }*/
+
+    // buscamos el primer nodo de abierta que no este en cerrada
+    /*private static Estado nodoAExpandir(ArrayList<Estado> listaAbierta, ArrayList<Estado> listaCerrada) {
+        for (int i = 0; i < listaAbierta.size(); i++) {
+            boolean encontrado = false;
+            Estado nodoListaAbierta = listaAbierta.get(i);
+            for (int j = 0; !encontrado && j < listaCerrada.size(); j++) {
+                Estado nodoListaCerrada = listaCerrada.get(j);
+                // comprobamos que no haya un nodo igual en cerrada
+                if (nodoListaAbierta.OT.equals(nodoListaCerrada.OT)
+                        && nodoListaAbierta.CargaSAT1 == nodoListaCerrada.CargaSAT1
+                        && nodoListaAbierta.CargaSAT2 == nodoListaCerrada.CargaSAT2
+                        && nodoListaAbierta.BandaSAT1.equals(nodoListaCerrada.BandaSAT1)
+                        && nodoListaAbierta.BandaSAT2.equals(nodoListaCerrada.BandaSAT2)
+                        && nodoListaAbierta.OSAT1.equals(nodoListaCerrada.OSAT1)
+                        && nodoListaAbierta.OSAT2.equals(nodoListaCerrada.OSAT2)
+                        && nodoListaAbierta.Hour == nodoListaCerrada.Hour) { // FIXME: Ver si se puede hacer mejor
+                    encontrado = true;
+                    listaAbierta.remove(i); //eliminamos de abierta el nodo que está en cerrada
+                }
+            }
+            if (!encontrado)
+                return nodoListaAbierta;
+        }
+        return null;
+    }*/
+
     
     private static ArrayList<Estado> calcularCaminoFinal(Estado estadoFinal){
         //recuperamos los nodos y se guardan en orden

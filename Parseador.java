@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Parseador {
     
@@ -46,9 +44,10 @@ public class Parseador {
                 //creamos los astros a observar
                 for(int i = 0; i < infoAstros.length; i++){
                     int banda, hora;
+                    String id = "O" + (i+1);
                     banda = Integer.parseInt(infoAstros[i].substring(1, 2));
                     hora = Integer.parseInt(infoAstros[i].substring(3, 4));
-                    AstroObservacion nuevoAstro = new AstroObservacion(banda, hora);
+                    AstroObservacion nuevoAstro = new AstroObservacion(id, banda, hora);
                     astros.add(nuevoAstro);
                 } 
 
