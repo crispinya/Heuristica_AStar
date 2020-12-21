@@ -49,7 +49,7 @@ public class CosmosMain{
             nodoEscogido = abierta.get(0);
             abierta.remove(0);
 
-            System.out.println("EXPANDIDO: " + nodoEscogido.imprimirEstado());
+            System.out.println("EXPANDIDO: " + Printer.imprimirEstado(nodoEscogido));
             numExpandidos ++; //expandimos otro nodo
 
             if(isEstadoFinal(nodoEscogido, problema)){
@@ -87,13 +87,12 @@ public class CosmosMain{
             ArrayList<Estado> caminoFinal = calcularCaminoFinal(nodoEscogido);
 
             // Se ha encontrado solucion, se imprime el resultado
-            Printer impresora = new Printer();
-            impresora.printSolution(caminoFinal, numExpandidos, tiempoTranscurrido);
+            Printer.printSolution(caminoFinal, numExpandidos, tiempoTranscurrido);
         }
 
         // No exite solución o no se puede encontrar
         // El calculo de sucesores esta implementado dentro de la clase Estado
-        
+
     }
 
     private static int getIndiceNodoEnLista(Estado sucesor, ArrayList<Estado> lista) {
@@ -114,7 +113,7 @@ public class CosmosMain{
     }
 
     private static ArrayList<Estado> insertarOrden(Estado estadoInsertar, ArrayList<Estado> lista){
-        //ordenamos de menor a mayor f. Si la f es del mismo tamanio, la insertamos despues
+        //ordenamos de menor a mayor f. Si la f es del mismo tamaño, la insertamos despues
         int fInsertar = estadoInsertar.f;
         int indice = 0;
         

@@ -339,34 +339,4 @@ public class Estado implements Comparable<Estado> {
         if(this.h<e2.h) return -1; 
         return 0; //En caso de empate total, cogemos el mas nuevo
     }
-
-    //metodo para imprimir toda la informacion
-    public String imprimirEstado(){
-        String imprimir = "";
-
-        String impOT = "";
-        for(int i = 0; i <  this.OT.size(); i++){
-            impOT = impOT + " (" + this.OT.get(i).banda + "," + this.OT.get(i).hora + ")"; 
-        }
-
-        String impBanda1 = "(" + this.BandaSAT1[0] + "," + this.BandaSAT1[1] + ") -"; 
-        String impBanda2 = "(" + this.BandaSAT2[0] + "," + this.BandaSAT2[1] + ") - "; 
-
-        String impObvs1 = "";
-        for(int i = 0; i <  this.OSAT1.size(); i++){
-            impObvs1 = impObvs1 + " (" + this.OSAT1.get(i).banda + "," + this.OSAT1.get(i).hora + ")"; 
-        }    
-        
-        String impObvs2 = "";
-        for(int i = 0; i <  this.OSAT2.size(); i++){
-            impObvs2 = impObvs2 + " (" + this.OSAT2.get(i).banda + "," + this.OSAT2.get(i).hora + ")"; 
-        }
-        
-        String imprimirSAT1 = "SAT1: Carga " + this.CargaSAT1 + ", banda " + impBanda1 + " Observ " + impObvs1;
-        String imprimirSAT2 = "SAT2: Carga " + this.CargaSAT2 + ", banda " + impBanda2 + " Observ "+ impObvs2;
-        imprimir = "Hora: " + this.Hour + "; " + imprimirSAT1 + "; " + imprimirSAT2 + "; " + " Observ Trans" + impOT + "; f " + this.f;
-        
-        return imprimir;
-    }
-
 }
