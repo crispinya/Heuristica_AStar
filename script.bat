@@ -9,6 +9,6 @@ DEL SATelit.class
 
 javac CosmosMain.java
 
-java CosmosMain problema.prob a >ejecucion.txt
+java CosmosMain problema.prob heuristica2 >ejecucion.txt
 
 pause

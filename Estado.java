@@ -87,20 +87,137 @@ public class Estado implements Comparable<Estado> {
     }
     
     int calcularCosteHeuristico(){//TODO: implementar
-        int hCalculado = 1;
+        int hCalculado = 0; //heuristica por defecto es h = 0
         
-        /*if(this.problema.heuristica.equals("Heuristica1")){
-            //relajamos la restriccion de que solo se puedan realizar acciones diferentes de IDLE entre las 0 y las 12
-            //reljamos tambien la restriccion de que gaste energia una operacion
-            //relajamos restriccion de que tengan que estar en la misma banda
+        if(this.problema.heuristica.equals("heuristica1")){
+            int noTransmit = problema.astrosAObservar.size() - this.OT.size();
+            int observadasNoTransmit = OSAT1.size() + OSAT2.size();
+            int noObservadas = noTransmit - observadasNoTransmit;
+            
+            hCalculado = (2*noObservadas + 1*observadasNoTransmit)/2; 
+            //hCalculado = noObservadas + observadasNoTransmit; 
+            //2* ya que cuesta 1 hora observarlas y otra hora transmitirlas
+            //1* porque solo hay que transmitirla, lo cual cuesta 1 hora
+            //divimos /2 ya que hay dos satelites que pueden realizar observaciones / transmisiones a la vez
 
-            //coste seria 
         } 
-        
-        else if(this.problema.heuristica.equals("Heuristica2")){
 
+        else if(this.problema.heuristica.equals("heuristica2")){
+            //no relajamos la restriccion de que este en la misma banda
+
+            int noTransmit = problema.astrosAObservar.size() - this.OT.size();
+            ArrayList<AstroObservacion> astrosPorObservar = new ArrayList<AstroObservacion>();
+            //insertamos los astros que faltan por observar
+            for(int i = 0; i < problema.astrosAObservar.size(); i++){
+                if(!this.OT.contains(problema.astrosAObservar.get(i))){
+                    astrosPorObservar.add(problema.astrosAObservar.get(i));
+                }
+            }
+
+            int observadasNoTransmit = OSAT1.size() + OSAT2.size();
+            int noObservadas = noTransmit - observadasNoTransmit;
+            
+            //checkeamos si hay alguna observacion disponible en la banda de alguno de los astros
+            boolean bandaOk = false; 
+
+            for(int i = 0; i < astrosPorObservar.size() && !bandaOk; i++){
+                if(astrosPorObservar.get(i).banda == this.BandaSAT1[0] || astrosPorObservar.get(i).banda == this.BandaSAT1[1]){
+                    bandaOk = true;
+                }
+                if(astrosPorObservar.get(i).banda == this.BandaSAT2[0] || astrosPorObservar.get(i).banda == this.BandaSAT2[1]){
+                    bandaOk = true;
+                }
+            }
+
+            if(bandaOk){
+                hCalculado = (2*noObservadas + 1*observadasNoTransmit)/2;
+            } else{
+                hCalculado = (2*noObservadas + 1*observadasNoTransmit)/2 + 1; //por lo menos un satelite tendra que girar
+            }
+             
+
+        }
+        
+        /*else if(this.problema.heuristica.equals("heuristica2")){
+            //relajamos todo excepto los costos, que ahora sí se tienen en cuenta
+            
+            //hereda de la heuristica1
+            int noTransmit = problema.astrosAObservar.size() - this.OT.size();
+            int observadasNoTransmit = OSAT1.size() + OSAT2.size();
+            int noObservadas = noTransmit - observadasNoTransmit;
+
+            //calculos heuristica2
+            int horasCargaPreObservacionSAT1 = this.problema.SAT1.coste_observar/this.problema.SAT1.beneficio_cargar; //tiempo en horas que se tarda en recargar la bateria lo suficiente como para poder realizar un observacion
+            int horasCargaPreTransmisionSAT1 = this.problema.SAT1.coste_transmitir/this.problema.SAT1.beneficio_cargar; //tiempo en horas que se tarda en recargar la bateria lo suficiente como para poder realizar un transmision
+            int horasCargaPreObservacionSAT2 = this.problema.SAT2.coste_observar/this.problema.SAT2.beneficio_cargar; //tiempo en horas que se tarda en recargar la bateria lo suficiente como para poder realizar un observacion
+            int horasCargaPreTransmisionSAT2 = this.problema.SAT2.coste_transmitir/this.problema.SAT2.beneficio_cargar;
+            
+            //para controlar los impares
+            int noObservadasSAT1, noObservadasSAT2;
+            if((noObservadas/2) % 2==0){
+                noObservadasSAT1=noObservadas/2;
+                noObservadasSAT2=noObservadas/2;
+            }else{
+                noObservadasSAT1=(noObservadas/2) + 1; //decision de diseño
+                noObservadasSAT2=noObservadas/2;
+            }
+
+            //respecto a SAT1
+            if(noObservadas > 0 && this.CargaSAT1 >= this.problema.SAT1.coste_observar){ //faltan observaciones por realizar y tiene bateria
+                hCalculado = Math.max(horasCargaPreObservacionSAT1* (noObservadasSAT1 - 1),0) + horasCargaPreTransmisionSAT1 * (noObservadasSAT1 + OSAT1.size());
+            } else if(noObservadas > 0 && this.CargaSAT1 < this.problema.SAT1.coste_observar){ //faltan observaciones por realizar pero no tiene bateria
+                hCalculado = horasCargaPreObservacionSAT1* noObservadasSAT1 + horasCargaPreTransmisionSAT1 * (noObservadasSAT1 + OSAT1.size());
+            } else if(noObservadas == 0 && this.CargaSAT1 >= this.problema.SAT1.coste_transmitir){ //solo quedan pro transmitir, y hay bateria para ello
+                hCalculado = Math.max(horasCargaPreTransmisionSAT1 * (OSAT1.size()-1),0);
+            } else if(noObservadas == 0 && this.CargaSAT1 < this.problema.SAT1.coste_transmitir){ //solo quedan por transmitir, no hay bateria para ello
+                hCalculado = horasCargaPreTransmisionSAT1 * OSAT1.size();
+            }
+
+            //respecto a SAT2
+            if(noObservadas > 0 && this.CargaSAT2 >= this.problema.SAT2.coste_observar){ //faltan observaciones por realizar y tiene bateria
+                hCalculado = hCalculado + Math.max(horasCargaPreObservacionSAT2* (noObservadasSAT2 - 1),0) + horasCargaPreTransmisionSAT2 * (noObservadasSAT2 + OSAT2.size());
+            } else if(noObservadas > 0 && this.CargaSAT2 < this.problema.SAT2.coste_observar){ //faltan observaciones por realizar pero no tiene bateria
+                hCalculado = hCalculado + horasCargaPreObservacionSAT2* noObservadasSAT2 + horasCargaPreTransmisionSAT2 * (noObservadasSAT2 + OSAT2.size());
+            } else if(noObservadas == 0 && this.CargaSAT2 >= this.problema.SAT2.coste_transmitir){ //solo quedan pro transmitir, y hay bateria para ello
+                hCalculado = hCalculado + Math.max(horasCargaPreTransmisionSAT2 * (OSAT2.size()-1),0);
+            } else if(noObservadas == 0 && this.CargaSAT2 < this.problema.SAT2.coste_transmitir){ //solo quedan por transmitir, no hay bateria para ello
+                hCalculado = hCalculado + horasCargaPreTransmisionSAT2 * OSAT2.size();
+            }
+        } */
+
+        /*else if(this.problema.heuristica.equals("heuristica2")){
+            //no relajamos el coste de transmision
+
+            //hereda de la heuristica1
+            int noTransmit = problema.astrosAObservar.size() - this.OT.size();
+            int observadasNoTransmit = OSAT1.size() + OSAT2.size();
+            int noObservadas = noTransmit - observadasNoTransmit;
+ 
+            //calculos heuristica2
+            int horasCargaPreTransmisionSAT1 = this.problema.SAT1.coste_transmitir/this.problema.SAT1.beneficio_cargar; //tiempo en horas que se tarda en recargar la bateria lo suficiente como para poder realizar un transmision
+            int horasCargaPreTransmisionSAT2 = this.problema.SAT2.coste_transmitir/this.problema.SAT2.beneficio_cargar;
+
+            //respecto a SAT1
+            if(noObservadas > 0 ){ //faltan observaciones por realizar y tiene bateria
+                hCalculado = horasCargaPreTransmisionSAT1 * (OSAT1.size());
+            } else if(noObservadas == 0 && this.CargaSAT1 >= this.problema.SAT1.coste_transmitir){ //solo quedan pro transmitir, y hay bateria para ello
+                hCalculado = Math.max(horasCargaPreTransmisionSAT1 * (OSAT1.size()-1),0);
+            } else if(noObservadas == 0 && this.CargaSAT1 < this.problema.SAT1.coste_transmitir){ //solo quedan por transmitir, no hay bateria para ello
+                hCalculado = horasCargaPreTransmisionSAT1 * OSAT1.size();
+            }
+
+            //respecta a SAT2
+            if(noObservadas > 0 ){ //faltan observaciones por realizar y tiene bateria
+                hCalculado = hCalculado + horasCargaPreTransmisionSAT2 * (OSAT2.size());
+            } else if(noObservadas == 0 && this.CargaSAT2 >= this.problema.SAT2.coste_transmitir){ //solo quedan pro transmitir, y hay bateria para ello
+                hCalculado = Math.max(hCalculado + horasCargaPreTransmisionSAT2 * (OSAT2.size()-1),0);
+            } else if(noObservadas == 0 && this.CargaSAT2 < this.problema.SAT2.coste_transmitir){ //solo quedan por transmitir, no hay bateria para ello
+                hCalculado = hCalculado + horasCargaPreTransmisionSAT2 * OSAT2.size();
+            }
+                     
         }*/
-         
+
+
         return hCalculado;
     }
 

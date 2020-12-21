@@ -8,7 +8,7 @@ public class Problem {
     SATelit SAT2; //satelite 2
 
     Estado S; //estado inicial
-    String heuristica; //nombre de la heurística con la que se va a resolver
+    String heuristica; //nombre de la heurística con la que se va a resolver: heuristica1, heuristica2 o ""
 
     //acciones que puede realizar cada satelite
     final String[] ACCIONES = {"IDLE", "Observa", "Transmite", "Gira", "Carga"};

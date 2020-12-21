@@ -15,18 +15,17 @@ public class CosmosMain{
         //First, we read problema.prob and get the data info, storing it in a problem
         Problem problema = new Problem(args[0]);
 
-        //we set the initial state
-        problema.S = new Estado(problema);
-        problema.heuristica = "";
-
-        //Configuramos la heurística, cuyos valores son "heuristica1" o "heuristica2" TODO:
-        /*if(args[1].equals("heuristica1") || args[1].equals("heuristica2")){
+        //Configuramos la heurística, cuyos valores son "heuristica1" o "heuristica2" o "0"TODO:
+        if(args[1].equals("heuristica1") || args[1].equals("heuristica2")){
             problema.heuristica = args[1];
         } else{
             System.out.println("Error, heuristica no valida. Se ejecutará con h=0 para todo nodo");
-            problema.heuristica = "heuristica nula";
-        }*/
+            problema.heuristica = "";
+        }
      
+        //we set the initial state
+        problema.S = new Estado(problema);
+
         AStar(problema);
 
     }
