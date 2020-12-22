@@ -3,9 +3,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//parseador para obtener los datos iniciales del archivo .prob pasado como parametro
 public class Parseador {
-    
-    public int[] parseSAT(String path, String SATname) throws IOException {
+
+    //metodo para obtener los datos de un satelite
+    public static int[] parseSAT(String path, String SATname) throws IOException {
         String infoSAT[] = new String[5]; //Obtendremos los costes de cada satelite por el fichero leido
         int dataSAT[] = new int[5];
         String linea = "";
@@ -29,39 +31,34 @@ public class Parseador {
         return dataSAT;
     }
 
-    public ArrayList<AstroObservacion> parseAstros(String path) throws IOException {
+    //metodo para obtener los datos de una muestra a tomar
+    public static ArrayList<MuestraObservacion> parseMuestra(String path) throws IOException {
         String linea = "";
         FileReader fichero = new FileReader(path); //Abrimos el fichero, si no lo encuentra saltara un error
         BufferedReader buffer = new BufferedReader(fichero);
-        //Astro astros[] = null; //astros a observar
-        ArrayList <AstroObservacion> astros = new ArrayList<>();
+        ArrayList <MuestraObservacion> muestras = new ArrayList<>();
 
         while((linea = buffer.readLine()) != null){  //Abrimos fichero, y un buffer para leer linea a linea lo que tenemos
             String tipoInformacion = linea.substring(0,4);
             if(tipoInformacion.equals("OBS:")){
-                String infoAstros[] = extractInformation(linea, 5); //El 5 es la posicion donde empiezan a aparecer los datos en OBS
+                String infoMuestras[] = extractInformation(linea, 5); //El 5 es la posicion donde empiezan a aparecer los datos en OBS
                 //tenemos en cada posicion del array la info de tipo (hora,banda) 
-                //creamos los astros a observar
-                for(int i = 0; i < infoAstros.length; i++){
+                //creamos las muestras a observar
+                for(int i = 0; i < infoMuestras.length; i++){
                     int banda, hora;
                     String id = "O" + (i+1);
-                    banda = Integer.parseInt(infoAstros[i].substring(1, 2));
-                    hora = Integer.parseInt(infoAstros[i].substring(3, 4));
-                    AstroObservacion nuevoAstro = new AstroObservacion(id, banda, hora);
-                    astros.add(nuevoAstro);
+                    banda = Integer.parseInt(infoMuestras[i].substring(1, 2));
+                    hora = Integer.parseInt(infoMuestras[i].substring(3, 4));
+                    MuestraObservacion nuevoAstro = new MuestraObservacion(id, banda, hora);
+                    muestras.add(nuevoAstro);
                 } 
 
                 buffer.close();
                 fichero.close();
 
-                return astros;
+                return muestras;
             }
         }
-
-        /*if(astros.equals(null)){ //Si no es ninguna de estas opciones, significa que el fichero contiene informacion erronea y por tanto no nos sirve
-            buffer.close();
-            throw new RuntimeException("Error: debe existir alguna observacion"); 
-        }*/
 
         buffer.close();
         fichero.close();
@@ -69,12 +66,14 @@ public class Parseador {
         return null;
     }
 
-    private static String[] extractInformation(String line, int substring){ //Extraemos la informacion de cada linea en forma de string. Cada posicion del array será cada uno de los costes
+    //Extraemos la informacion de cada linea en forma de string. Cada posicion del array sera cada uno de los costes
+    private static String[] extractInformation(String line, int substring){ 
         String inicioLectura = line.substring(substring);
         return inicioLectura.split(";");
     }
 
-    private static int[] convertToInt (String[] information){ //Parseamos cada string a un integer, para manipular con mayor facilidad los datos obtenidos
+    //Parseamos cada string a un integer, para manipular con mayor facilidad los datos obtenidos
+    private static int[] convertToInt (String[] information){ 
         int[] result = new int[information.length];
         for(int i=0 ; i< information.length;i++){
             try{
@@ -89,5 +88,4 @@ public class Parseador {
         }
         return result;
     }
-
 }

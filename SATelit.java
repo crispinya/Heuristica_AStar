@@ -1,5 +1,7 @@
 public class SATelit {
-    int[][] bandas_admitidas; //depende del SAT. SAT1 es (0,1) y (1, 2). SAT2 es (2, 3) y (1, 2)
+    //definicion de un satelite
+
+    int[][] bandas_admitidas; //bandas que admite el satelite, depende del SAT. SAT1 es (0,1) y (1, 2). SAT2 es (2, 3) y (1, 2)
     int coste_observar; 
     int coste_transmitir;
     int coste_girar;
