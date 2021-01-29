@@ -14,6 +14,8 @@ This is the final project of the Heuristics and optimization course. It is divid
 
 ## General information
 
+*TODO*
+
 ### Personal note
 
 	
@@ -30,7 +32,7 @@ The part 2 was implemented using:
 
 # First Part (parte-1)
 
-TODO
+*TODO*
 
 # Second Part (parte-2)
 To run de Java Implementation of AStar to solve a given project as .prob the following steps must be followed:
@@ -60,18 +62,20 @@ which, as a result, would create two output files: *problema.prob.output* and *p
 
 **Current features:**
 
-	* [x] Implementation of AStar algorithm.
-	* [x] Null heuristic (h=0).
-	* [x] Two heuristics (heuristica1 and heuristica2).
-	* [x] Creation of output files.
+*  [x] Implementation of AStar algorithm.
+*  [x] Null heuristic (h=0).
+*  [x] Two heuristics (heuristica1 and heuristica2).
+*  [x] Creation of output files.
 
 **Future possible upgrades:**
 
-	* [ ] Implement new and improved heuristics.
-	* [ ] Translate the code into English.
+*  [ ] Implement new and improved heuristics. 
+*  [ ] Translate the code into English.
+
 
 ## Screenshots
 
+*TODO*
 
 ## Status
 This project is **finished** and graded by the teacher with a **mark of 98%**.
