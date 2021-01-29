@@ -7,7 +7,7 @@ This is the final project of the Heuristics and optimization course. It is divid
 	* [Personal note](#personal-note) 
 * [Technologies](#technologies) 
 * [Setup](#setup)
-* [Features](#features) *TODO*
+* [Features](#features)
 * [Screenshots](#screenshots) *TODO* 
 * [Status](#status)
 * [Contact](#inspiration)
