@@ -59,12 +59,14 @@ which, as a result, would create two output files: *problema.prob.output* and *p
 ## Features
 
 **Current features:**
+
 	* [x] Implementation of AStar algorithm.
 	* [x] Null heuristic (h=0).
 	* [x] Two heuristics (heuristica1 and heuristica2).
 	* [x] Creation of output files.
 
 **Future possible upgrades:**
+
 	* [ ] Implement new and improved heuristics.
 	* [ ] Translate the code into English.
 
