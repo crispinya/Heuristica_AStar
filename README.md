@@ -3,20 +3,11 @@
 This is the final project of the Heuristics and optimization course. It is divided in two parts: Firstly, an implementation of an optimization algorithm in Python (using python-constraints) and, secondly, an optimization and solving of a given problem using Java (implementing heuristics and an AStar algorithm). 
 
 ## Table of contents
-* [General information](#general-information) *TODO*
-	* [Personal note](#personal-note) 
 * [Technologies](#technologies) 
 * [Setup](#setup)
 * [Features](#features)
-* [Screenshots](#screenshots) *TODO* 
 * [Status](#status)
-* [Contact](#inspiration)
-
-## General information
-
-*TODO*
-
-### Personal note
+* [Contact](#contact)
 
 	
 ## Technologies
@@ -24,15 +15,10 @@ This is the final project of the Heuristics and optimization course. It is divid
 The part 1 was implemented using:
 - Python alongside the python-constraint library.
 
-
 The part 2 was implemented using:
 - Java
 	
 ## Setup
-
-# First Part (parte-1)
-
-*TODO*
 
 # Second Part (parte-2)
 To run de Java Implementation of AStar to solve a given project as .prob the following steps must be followed:
@@ -72,10 +58,6 @@ which, as a result, would create two output files: *problema.prob.output* and *p
 *  [ ] Implement new and improved heuristics. 
 *  [ ] Translate the code into English.
 
-
-## Screenshots
-
-*TODO*
 
 ## Status
 This project is **finished** and graded by the teacher with a **mark of 98%**.
